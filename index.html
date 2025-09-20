@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Research Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Market & Competitive Research Agent</h1>
+        <form action="/research" method="post">
+            <input type="text" name="competitor_name" placeholder="Enter Competitor Name" required>
+            <button type="submit">Analyze</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if competitor_name %}
+            <h2>Analysis for: {{ competitor_name }}</h2>
+            
+            <div class="analysis-section">
+                <h3>SWOT Analysis</h3>
+                <pre>{{ swot_analysis }}</pre>
+            </div>
+
+            <div class="analysis-section">
+                <h3>PESTLE Analysis</h3>
+                <pre>{{ pestle_analysis }}</pre>
+            </div>
+
+            <div class="analysis-section">
+                <h3>Porter's Five Forces Analysis</h3>
+                <pre>{{ five_forces_analysis }}</pre>
+            </div>
+            
+            <div class="analysis-section">
+                <h3>Gartner-style Market Report</h3>
+                <pre>{{ gartner_report }}</pre>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
